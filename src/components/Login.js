@@ -7,7 +7,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom"
 
 const Login = () => {
 
-    const { setAuth } = useAuth()
+    const { setAuth, persist, setPersist } = useAuth()
     const userRef = useRef()
     const errRef = useRef()
 
@@ -44,13 +44,13 @@ const Login = () => {
             console.log(JSON.stringify(response?.data))
             const accessToken = response?.data?.accessToken
             const roles = response?.data?.roles
-            setAuth({user, pwd, roles, accessToken})
+            setAuth({ user, pwd, roles, accessToken })
             // console.log('accessToken data: ', accessToken)
             // console.log('roles data: ', roles)
             setUser('')
             setPwd('')
             // setSuccess(true)
-                navigate(from, {replace: true})
+            navigate(from, { replace: true })
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response')
@@ -68,6 +68,13 @@ const Login = () => {
 
     }
 
+    const togglePersist = () => {
+        setPersist(prev => !prev)
+    }
+
+    useEffect(() => {
+        localStorage.setItem("persist", persist)
+    }, [persist])
 
     return (
         <Fragment>
@@ -105,7 +112,14 @@ const Login = () => {
                                 required
                             />
                             <button >Sign In</button>
-
+                            <div className="persistCheck">
+                                <input type="checkbox"
+                                    id="persist"
+                                    onChange={togglePersist}
+                                    checked={persist}
+                                />
+                                <label htmlFor="persist">Trust this device</label>
+                            </div>
                         </form>
                     </section>
                 )
@@ -114,6 +128,6 @@ const Login = () => {
         </Fragment>
 
     )
-} 
+}
 
 export default Login

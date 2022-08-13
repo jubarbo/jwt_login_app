@@ -9,7 +9,7 @@ const Admin = () => {
     return (
         <section>
             <h1>
-                Admin Page 2
+                Admin Page
             </h1>
 
             <br />

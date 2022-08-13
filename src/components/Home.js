@@ -10,7 +10,7 @@ const Home = () => {
 
     const signOut = async () => {
         await logout();
-        navigate('/links');
+        navigate('/linkpage');
     }
 
     // const logout = async () => {
@@ -32,7 +32,7 @@ const Home = () => {
             <br />
             <Link to="/lounge">Go to the Lounge</Link>
             <br />
-            <Link to="/links">Go to the link page</Link>
+            <Link to="/linkpage">Go to the link page</Link>
             <div className="flexGrow">
                 <button onClick={signOut}>Sign Out</button>
             </div>
