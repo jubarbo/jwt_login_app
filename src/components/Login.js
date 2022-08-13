@@ -5,7 +5,7 @@ import axios from '../api/axios'
 import useAuth from '../hooks/useAuth'
 import { Link, useNavigate, useLocation } from "react-router-dom"
 
-export const Login = () => {
+const Login = () => {
 
     const { setAuth } = useAuth()
     const userRef = useRef()
@@ -115,3 +115,5 @@ export const Login = () => {
 
     )
 } 
+
+export default Login
